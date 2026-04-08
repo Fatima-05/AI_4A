@@ -6,4 +6,9 @@ sample_dict = {
 
 keys = ["name", "salary"]
 
-print(keys)
+dict2={}
+
+for i in keys:
+    dict2[i]=sample_dict.get(i)
+
+print(dict2)
