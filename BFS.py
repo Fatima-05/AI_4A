@@ -13,7 +13,7 @@ def actionSeq(graph,initial,goal):
     return sol        
 def BFS():
     initial='D'
-    goal='F'
+    goal='G'
     graph = { 'A': Node('A',None,['B','E','C']),
               'B': Node('B',None,['A','D','E']),
               'C': Node('C',None,['F','G','A']),
