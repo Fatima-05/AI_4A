@@ -3,14 +3,12 @@ class Node:
         self.state = state
         self.parent = parent
 
-
 def get_path(node):
     path = []
     while node:
         path.append(node.state)
         node = node.parent
     return path[::-1]
-
 
 def BFS(initial_state, goal_test, get_children):
     frontier = [Node(initial_state)]
@@ -30,14 +28,12 @@ def BFS(initial_state, goal_test, get_children):
 
     return None
 
-
 def goal_test(state):
     return state=='L'
 
 
 def get_children(state):
     return graph[state]
-
 
 if __name__ == "__main__":
     graph = {
@@ -49,6 +45,5 @@ if __name__ == "__main__":
         'E':['D'],
         'L':['D'],
     }
-
     result=BFS('S', goal_test, get_children)
     print(result)
