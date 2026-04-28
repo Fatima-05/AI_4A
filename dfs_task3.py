@@ -1,49 +1,29 @@
-class Node:
-    def __init__(self, state, parent=None):
-        self.state = state
-        self.parent = parent
+def dfs_maze_all_paths():
+    maze=[
+        ['S',0,0],
+        [1,0,1],
+        [0,0,'E']
+    ]
+    paths=[]
+    def backtrack(x,y,path):
+        path.append((x,y))
+        if (x,y)==(2,2):
+            paths.append(path[:])
+            path.pop()
+            return
+        for dx,dy in [(-1,0),(1,0),(0,-1),(0,1)]:
+            nx=x+dx
+            ny=y+dy
+            if (0<=nx<3 and 0<=ny<3 and maze[nx][ny]!=1 and (nx,ny) not in path):
+                backtrack(nx,ny,path)
+        path.pop()
+    backtrack(0,0,[])
+    return paths
 
-def get_path(node):
-    path = []
-    while node:
-        path.append(node.state)
-        node = node.parent
-    return path[::-1]
+all_paths = dfs_maze_all_paths()
+print("Total solutions:", len(all_paths), "\n")
 
-def BFS(initial_state, goal_test, get_children):
-    frontier = [Node(initial_state)]
-    explored = set()
-
-    while frontier:
-        node = frontier.pop(len(frontier)-1)
-
-        if goal_test(node.state):
-            return get_path(node)
-
-        explored.add(node.state)
-
-        for child_state in get_children(node.state):
-            if child_state not in explored and all(n.state != child_state for n in frontier):
-                frontier.append(Node(child_state, node))
-
-    return None
-
-def goal_test(state):
-    return state=='L'
-
-
-def get_children(state):
-    return graph[state]
-
-if __name__ == "__main__":
-    graph = {
-        'S':['A', 'B'],
-        'A':['S', 'C'],
-        'B':['S'],
-        'C':['A', 'D'],
-        'D':['C','E', 'L'],
-        'E':['D'],
-        'L':['D'],
-    }
-    result=BFS('S', goal_test, get_children)
-    print(result)
+for i,path in enumerate(all_paths,1):
+    print(f"Path {i} ({len(path)-1} moves):")
+    for pos in path:
+        print(pos,end="->")
