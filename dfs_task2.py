@@ -46,10 +46,10 @@ def dfs_depth(max_depth=20):
 
 path=dfs_depth(20)
 if path:
-    print(f"Solution found in depth limit ({len(path)-1} steps)\n")
+    print(f"Solution found in depth limit. Total steps: {len(path)-1}\n")
     for step, state in enumerate(path):
         print(f"Step {step}:")
         for row in state:
             print(row)
 else:
-    print("Solution not found in depth limit")
+    print("No solution found in depth limit")
