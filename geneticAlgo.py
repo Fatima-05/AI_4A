@@ -69,7 +69,7 @@ class GA:
             self.population[j+1]=[child2,sum(child2)]
             i=i+1
             j=j+2
-        self. updatePopulationFitness ()
+        self.updatePopulationFitness()
     
     def mutateChildren (self, mutationProbability) :
         numberOfBits=round(mutationProbability*self.populationSize*self.individualSize)
@@ -106,6 +106,6 @@ def main():
                 break
         if found:
             break
-        
+
 if __name__=="__main__":
     main()
